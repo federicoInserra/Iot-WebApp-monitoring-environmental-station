@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Iot webapp</title>
+    <script src="utility.js"></script>
+</head>
+
+<body>
+    
+    <h1>Welcome to the monitoring page!</h1>
+
+    <div id= "div-station1">
+        <h4>Environmental Station 1</h4>
+        <p>Last detections</p>
+        <div id="show-station1">
+        
+        </div>
+    </div>
+
+    <div id= "div-station2">
+        <h4>Environmental Station 2</h4>
+        <p>Last detections</p>
+        <div id="show-station2">
+        
+        </div>
+    </div>
+
+
+    <div id = "div-sensors">
+        <h4>Choose a sensor!</h4>
+        <select id = "select-sensor" >
+            <option value="null"></option>
+            <option value="temperature">Temperature</option>
+            <option value="humidity">Humidity </option>
+            <option value="wind_direction">Wind direction</option>
+            <option value="wind_intensity">Wind intensity</option>
+            <option value="rain_height">Rain height </option>
+        </select>
+        <button onclick="fill_sensor()"> Press to see last hour detections for this sensor</button>
+
+        <div id= 'show_sensor_values'>
+
+        </div>
+    </div>
+</body>
+<script>start();</script>
+</html>
