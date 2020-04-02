@@ -30,6 +30,12 @@
 #include "net/emcute.h"
 #include "net/ipv6/addr.h"
 
+/*
+#include "lpsxxx.h"
+#include "lpsxxx_params.h"
+#include "lpsxxx_internal.h"
+*/
+
 #define EMCUTE_PORT         (1883U)
 #define EMCUTE_ID           ("gertrud")
 #define EMCUTE_PRIO         (THREAD_PRIORITY_MAIN - 1)
@@ -132,11 +138,60 @@ int generate_values(int max_range)
 
 }
 
+/*
+int measure_real_temperature(void)
+{
+    // This function allow to take real temperature from m3 sensor
+
+    lpsxxx_t dev;
+
+    if (lpsxxx_init(&dev, &lpsxxx_params[0]) != LPSXXX_OK)
+    {
+        puts("Error during sensor initialization");
+        return 1;
+    }
+
+    printf("Measuring real temperature ..");
+    int16_t temp;
+    lpsxxx_enable(&dev);
+    xtimer_sleep(2); // sleep until the measurements finish 
+    lpsxxx_read_temp(&dev, &temp);
+    lpsxxx_disable(&dev);
+    int temp_abs = temp / 100;
+    int temperature = temp_abs;
+
+    return temperature;
+}
+*/
 static int cmd_pub_detections(int argc, char **argv)
 
 {   
     /* This is the function that simulates the detections relevation for the 
     two enviromental stations and send the data to the gateway  */
+
+    emcute_topic_t emt;
+    unsigned flags = EMCUTE_QOS_0;
+    
+    
+    if (argc < 2) {
+        printf("usage: %s <topic name> <data> [QoS level]\n", argv[0]);
+        return 1;
+    }
+
+    
+    if (argc >= 4) {
+        flags |= get_qos(argv[4]);
+    }
+    
+    
+    /* step 1: get topic id */
+    emt.name = argv[1];
+    if (emcute_reg(&emt) != EMCUTE_OK) {
+        puts("error: unable to obtain topic ID");
+        return 1;
+    }
+
+   
 
     while(1)
     {
@@ -174,8 +229,24 @@ static int cmd_pub_detections(int argc, char **argv)
         strcat(stn2, stn0);
         strcat(detections, stn2);
 
-        //Generate the temperature
-        int temperature = generate_values(100) - 50;
+        // Generate the temperature
+        int temperature;
+
+        /*
+        // Take real temperature
+        if(strcmp(argv[3], "rt") == 0)
+        {   
+            temperature = measure_real_temperature();
+        }
+
+        // Generate random temperature
+        else 
+        {
+            temperature = generate_values(100) - 50;
+        }
+        */
+        
+        temperature = generate_values(100) - 50;
         char tp1[50];
         sprintf(tp1, "%d", temperature);
         char tp2[100] = ",\"temperature\": ";
@@ -244,28 +315,6 @@ static int cmd_pub_detections(int argc, char **argv)
         printf("%s\n", detections);
 
 
-        emcute_topic_t emt;
-        unsigned flags = EMCUTE_QOS_0;
-
-        
-        if (argc < 2) {
-            printf("usage: %s <topic name> <data> [QoS level]\n", argv[0]);
-            return 1;
-        }
-
-        
-        if (argc >= 3) {
-            flags |= get_qos(argv[3]);
-        }
-        
-        
-        /* step 1: get topic id */
-        emt.name = argv[1];
-        if (emcute_reg(&emt) != EMCUTE_OK) {
-            puts("error: unable to obtain topic ID");
-            return 1;
-        }
-
         /* step 2: publish data */
         if (emcute_pub(&emt, detections, sizeof(detections), flags) != EMCUTE_OK) {
             printf("error: unable to publish data to topic '%s [%i]'\n",
@@ -320,3 +369,4 @@ int main(void)
     /* should be never reached */
     return 0;
 }
+
