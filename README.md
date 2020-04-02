@@ -14,5 +14,8 @@ https://www.youtube.com/watch?v=ZEzOCeNJW5Q&feature=youtu.be
 
 This are the blog post and the youtube video for the second assignment:
 
+All the step to follow to create the architecture are explained in this blog post: 
+https://www.linkedin.com/pulse/hands-on-tutorial-how-connect-riotos-aws-federico-inserra
+
 A video that shows how RiotOS communicate to AWS using MQTTSN transparent gateway and mosquitto broker:
 https://youtu.be/k6ZbCMi5Lac
