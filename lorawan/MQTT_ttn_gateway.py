@@ -5,7 +5,7 @@ import datetime
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
 app_id = "YOUR APP ID"
-access_key = "ttn-account-v2.********"
+access_key = "ttn-account-v2.*********"
 
 #Path for essential files
 ROOT_CA = "YOUR ROOT CA"
