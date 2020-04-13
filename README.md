@@ -19,3 +19,12 @@ https://www.linkedin.com/pulse/hands-on-tutorial-how-connect-riotos-aws-federico
 
 A video that shows how RiotOS communicate to AWS using MQTTSN transparent gateway and mosquitto broker:
 https://youtu.be/k6ZbCMi5Lac
+
+
+This are the blog post and the youtube video for the third assignment:
+
+You can find all the instructions to setup and running two riotOs application on iot-lab and send data to TTN here:
+https://www.linkedin.com/pulse/hands-on-tutorial-how-send-real-sensors-value-thing-network-inserra
+
+This is a video that shows how the system works:
+https://www.youtube.com/watch?v=cAL2G2SNSgQ&feature=youtu.be
