@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Accelerometer Example | Generic Sensor API | mobiForge</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Ruadhan O'Donoghue">
+  <meta charset="UTF-8">
+  <script src="main.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <h1>Accelerometer raw data</h1>
+  <div id="status">No data</div>
+
+
+  <script>
+   
+    let status = document.getElementById('status');
+    if ( 'Accelerometer' in window ) {
+      let sensor = new Accelerometer();
+      sensor.addEventListener('reading', function(e) {
+        status.innerHTML = 'x: ' + e.target.x + '<br> y: ' + e.target.y + '<br> z: ' + e.target.z;
+        var x = e.target.x;
+        var y = e.target.y;
+        var z = e.target.z;
+        
+        setTimeout(recognizeActivity, 1000, x, y, z);
+        
+      });
+      sensor.start();
+    }
+    else status.innerHTML = 'Accelerometer not supported';
+
+    
+  </script>
+
+  <div id = "activity">
+
+  </div>
+
+
+
+</body>
+</html>
