@@ -40,3 +40,5 @@ https://www.linkedin.com/pulse/crowdsensing-recognize-activity-user-using-aws-si
 This is a brief video that shows everything working:
 https://www.youtube.com/watch?v=DV9UywH3kC0&feature=youtu.be
 
+All the code for this assignment is in the folder crowdSensing
+
