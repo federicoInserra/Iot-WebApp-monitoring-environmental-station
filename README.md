@@ -28,3 +28,14 @@ https://www.linkedin.com/pulse/hands-on-tutorial-how-send-real-sensors-value-thi
 
 This is a video that shows how the system works:
 https://www.youtube.com/watch?v=cAL2G2SNSgQ&feature=youtu.be
+
+
+
+This are the blog post and the youtube video for the fourth assignment:
+
+All the instructions to setup all the infrastracture and the application can be find in this blog post:
+https://www.linkedin.com/pulse/crowdsensing-recognize-activity-user-using-aws-simple-inserra
+
+This is a brief video that shows everything working:
+https://www.youtube.com/watch?v=DV9UywH3kC0&feature=youtu.be
+
